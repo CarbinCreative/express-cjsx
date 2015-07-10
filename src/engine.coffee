@@ -36,7 +36,7 @@ class ViewEngine
       callback error
       return false
 
-    if engineOptions.beautify
+    if @engineOptions.beautify
       viewMarkup = html viewMarkup
 
     if componentOptions.settings.env is 'development'

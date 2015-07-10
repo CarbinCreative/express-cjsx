@@ -55,7 +55,7 @@
         callback(error);
         return false;
       }
-      if (engineOptions.beautify) {
+      if (ViewEngine.engineOptions.beautify) {
         viewMarkup = html(viewMarkup);
       }
       if (componentOptions.settings.env === 'development') {
