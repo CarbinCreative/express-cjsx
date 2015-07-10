@@ -26,14 +26,14 @@
     };
 
     ViewEngine.createEngine = function(engineOptions) {
-      this.engineOptions = merge(defaultEngineOptions, engineOptions);
-      this.regexViewFileExtension = new RegExp("\\" + this.engineOptions.extension + "$");
+      ViewEngine.engineOptions = merge(defaultEngineOptions, engineOptions);
+      ViewEngine.regexViewFileExtension = new RegExp("\\" + ViewEngine.engineOptions.extension + "$");
       cjsx.transform();
       jsx.install({
         extension: '.jsx',
         harmony: true
       });
-      return this.renderView;
+      return ViewEngine.renderView;
     };
 
     ViewEngine.renderView = function(componentFileName, componentOptions, callback) {
@@ -42,7 +42,7 @@
         callback = noop;
       }
       try {
-        viewMarkup = this.engineOptions.doctype;
+        viewMarkup = ViewEngine.engineOptions.doctype;
         componentFile = require(componentFileName);
         componentFactory = React.createFactory(componentFile);
         componentInstance = componentFactory(componentOptions);
@@ -56,13 +56,11 @@
         viewMarkup = html(viewMarkup);
       }
       if (componentOptions.settings.env === 'development') {
-        Object.keys(require.cache).forEach((function(_this) {
-          return function(module) {
-            if (_this.regexViewFileExtension.test(require.cache[module].filename)) {
-              delete require.cache[module];
-            }
-          };
-        })(this));
+        Object.keys(require.cache).forEach(function(module) {
+          if (ViewEngine.regexViewFileExtension.test(require.cache[module].filename)) {
+            delete require.cache[module];
+          }
+        });
       }
       callback(null, viewMarkup);
     };
