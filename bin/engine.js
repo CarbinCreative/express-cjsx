@@ -26,6 +26,9 @@
     };
 
     ViewEngine.createEngine = function(engineOptions) {
+      if (engineOptions == null) {
+        engineOptions = {};
+      }
       ViewEngine.engineOptions = merge(defaultEngineOptions, engineOptions);
       ViewEngine.regexViewFileExtension = new RegExp("\\" + ViewEngine.engineOptions.extension + "$");
       cjsx.transform();

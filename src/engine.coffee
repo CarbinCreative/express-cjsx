@@ -14,7 +14,7 @@ class ViewEngine
     extension: '.cjsx'
     beautify: off
 
-  @createEngine: (engineOptions) =>
+  @createEngine: (engineOptions = {}) =>
     @engineOptions = merge defaultEngineOptions, engineOptions
     @regexViewFileExtension = new RegExp "\\#{@engineOptions.extension}$"
 
