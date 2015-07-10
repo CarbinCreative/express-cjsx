@@ -13,13 +13,13 @@
   jsx = require('node-jsx');
 
   ViewEngine = (function() {
-    var noop;
+    var defaultEngineOptions, noop;
 
     function ViewEngine() {}
 
     noop = function() {};
 
-    ViewEngine.defaultEngineOptions = {
+    defaultEngineOptions = {
       doctype: '<!DOCTYPE html>',
       extension: '.cjsx',
       beautify: false

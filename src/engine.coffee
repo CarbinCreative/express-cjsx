@@ -9,7 +9,7 @@ class ViewEngine
 
   noop = -> return
 
-  @defaultEngineOptions:
+  defaultEngineOptions =
     doctype: '<!DOCTYPE html>'
     extension: '.cjsx'
     beautify: off
